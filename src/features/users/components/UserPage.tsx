@@ -67,7 +67,7 @@ export default function UserPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* 페이지 타이틀과 목업 데이터 알림 */}
       <div className="flex items-center mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">사전과제 - 사용자 조회</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">사용자 조회</h1>
         <MockDataAlert isMockData={isMockData} errorDetails={errorDetails} />
       </div>
       
