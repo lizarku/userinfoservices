@@ -11,7 +11,9 @@ console.log('[MSW] 핸들러 등록 경로:', `${BASE_URL}/users`);
 
 export const handlers = [
   // 사용자 목록 조회 API - 정확한 경로 패턴 사용
-  http.get(`${BASE_URL}/users`, async ({ request }) => {
+  // API 명세에 따라 params 매개변수 유지 (현재는 사용하지 않지만 향후 확장성을 위해 유지)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  http.get(`${BASE_URL}/users`, async ({ request, params }) => {
     try {
       console.log('[MSW 인터셉트] 사용자 목록 조회 API');
       console.log('[MSW 인터셉트] URL:', request.url);
