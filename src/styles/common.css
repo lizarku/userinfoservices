@@ -1,0 +1,67 @@
+/* 공통 버튼 스타일 */
+.common-button {
+  white-space: nowrap; /* 줄바꿈 방지 */
+  height: 40px; /* 버튼 높이 고정 */
+  min-width: 80px; /* 최소 너비 설정 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 버튼 컨테이너 스타일 */
+.button-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* 줄바꿈 방지 */
+  gap: 8px;
+  min-width: 180px; /* 최소 너비 설정 */
+}
+
+/* 검색 폼 스타일 */
+.search-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap; /* 줄바꿈 방지 */
+  gap: 16px;
+}
+
+.search-form-inputs {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+/* 테이블 내 버튼 스타일 */
+.table-action-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* 줄바꿈 방지 */
+  gap: 4px;
+  justify-content: center;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 900px) {
+  .search-form {
+    flex-wrap: wrap; /* 모바일에서는 줄바꿈 허용 */
+  }
+  
+  .search-form-inputs {
+    flex-wrap: wrap; /* 모바일에서는 줄바꿈 허용 */
+    margin-bottom: 16px;
+  }
+  
+  .button-container {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* 테이블 내 버튼 크기 조정 */
+.table-button {
+  min-width: 60px !important; /* 테이블 내 버튼 최소 너비 */
+  padding: 4px 8px !important; /* 테이블 내 버튼 패딩 */
+  font-size: 0.75rem !important; /* 테이블 내 버튼 글자 크기 */
+} 

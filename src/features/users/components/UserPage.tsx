@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppDispatch } from '../../../app/hooks';
 import { setSelectedUser, deleteUser } from '../redux/userSlice';
 import { MockDataAlert } from '../../../components/common';
@@ -22,12 +22,29 @@ export default function UserPage() {
   const [modalMode, setModalMode] = useState<'view' | 'edit'>('view');
   // 알림 상태
   const [notification, setNotification] = useState({ show: false, message: '', type: 'success' });
+  // API 상태 정보 (모의 데이터 사용 여부, 에러 정보)
+  const [mockStatus, setMockStatus] = useState({
+    isMockData: apiStatus.isMockData,
+    errorDetails: apiStatus.errorDetails
+  });
 
   const dispatch = useAppDispatch();
   
-  // API 상태 정보 (모의 데이터 사용 여부, 에러 정보)
-  const isMockData = apiStatus.isMockData;
-  const errorDetails = apiStatus.errorDetails;
+  // apiStatus 변경 감지
+  useEffect(() => {
+    // 100ms마다 apiStatus 확인
+    const interval = setInterval(() => {
+      if (mockStatus.isMockData !== apiStatus.isMockData || 
+          mockStatus.errorDetails !== apiStatus.errorDetails) {
+        setMockStatus({
+          isMockData: apiStatus.isMockData,
+          errorDetails: apiStatus.errorDetails
+        });
+      }
+    }, 100);
+    
+    return () => clearInterval(interval);
+  }, [mockStatus]);
 
   // 상세조회 버튼 클릭 시 호출
   const handleDetail = () => {
@@ -68,7 +85,7 @@ export default function UserPage() {
       {/* 페이지 타이틀과 목업 데이터 알림 */}
       <div className="flex items-center mb-6">
         <h1 className="text-2xl font-semibold text-gray-900">사용자 조회</h1>
-        <MockDataAlert isMockData={isMockData} errorDetails={errorDetails} />
+        <MockDataAlert isMockData={mockStatus.isMockData} errorDetails={mockStatus.errorDetails} />
       </div>
       
       {/* 검색 영역 */}

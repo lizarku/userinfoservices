@@ -1,10 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { getUserByIdResponse, searchUsersResponse, apiResponse, apiErrorResponse } from './userData';
 import { UserUpdateParams } from '../types/user';
-
-// API 기본 URL - 정확한 경로로 수정
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY || '55351d39-8898-41eb-aa52-15c63e4f738d';
-const BASE_URL = `https://fabricate.mockaroo.com/api/v1/workspaces/danal/databases/${API_KEY}/api`;
+import { BASE_URL } from '../_setting/axios/constants';
 
 // 디버깅을 위한 핸들러 경로 출력
 console.log('[MSW] 핸들러 등록 경로:', `${BASE_URL}/users`);
